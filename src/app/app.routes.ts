@@ -1,3 +1,8 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import { IntentsComponent } from './pages/intents/intents.component';
+export const routes: Routes = [
+  {
+    path: '',
+    component: IntentsComponent,
+  },
+];
