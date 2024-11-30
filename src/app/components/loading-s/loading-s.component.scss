@@ -1,0 +1,41 @@
+.main {
+  width: auto;
+  aspect-ratio: 1/1;
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 200px;
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+  animation: rotateA 1s forwards infinite ease-in-out;
+  transform: rotate(0);
+  .s-main {
+    height: 90%;
+    width: 90%;
+    position: absolute;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    border-radius: 200px;
+    animation: rotateA .5s forwards reverse infinite ease-in-out;
+
+  }
+  .loading {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    white-space: nowrap;
+  animation: rotateA 1s reverse forwards infinite ease-in-out;
+
+  }
+}
+
+@keyframes rotateA {
+  0% {
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}

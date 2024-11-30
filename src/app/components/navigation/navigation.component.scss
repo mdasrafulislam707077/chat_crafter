@@ -1,0 +1,43 @@
+.nav-main {
+  width: 100%;
+  position: relative;
+  .nav-items {
+    width: fit-content;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    .nav-item {
+      margin-right: 20px;
+      // width: ;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .icon {
+        width: 22px;
+        position: relative;
+        cursor: pointer;
+        img {
+          height: auto;
+          width: 100%;
+        }
+        .img {
+          transform: scale(0.92);
+        }
+      }
+
+      .active {
+        width: 10px;
+        height: 6px;
+        position: relative;
+        padding: 0;
+        img {
+          width: 100%;
+          height: 100%;
+          transform: translateY(-150%);
+        }
+      }
+    }
+  }
+}

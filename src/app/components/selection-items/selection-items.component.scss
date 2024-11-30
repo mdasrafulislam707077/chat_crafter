@@ -1,0 +1,242 @@
+:host {
+  height: 100%;
+  position: relative;
+  //   overflow: hidden;
+}
+.selector-box {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+}
+.selector-box .item {
+  width: 50%;
+  position: relative;
+  height: calc(100vh - 175px);
+}
+.selector-box .item:nth-child(1) {
+  margin-right: 20px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.selector-box .item h3 {
+  font-family: "Spicy Rice", serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 10px;
+}
+.selector-box .item .input-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.selector-box .item .input-container .txt-input {
+  width: 100%;
+  height: 40px;
+  resize: none;
+  padding: 10px;
+  margin-right: 10px;
+  outline: none;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.selector-box .item .input-container .button {
+  padding: 10px 20px;
+  background-color: orange;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 5px;
+  font-family: "Spicy Rice", serif;
+  font-weight: 400;
+  font-style: normal;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transform: scale(1);
+  transition: 0.2s;
+}
+
+.selector-box .item .input-container .button:hover {
+  transform: scale(0.98);
+}
+
+.selector-box .item .intent-list {
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+  // background-color: aquamarine;
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgb(96, 96, 96);
+    border-radius: 10px;
+  }
+  &.toggled::-webkit-scrollbar {
+    background-color: rgb(255, 0, 0); /* Toggled color */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f4f4f4; /* Light gray background */
+    border-radius: 6px;
+  }
+
+  /* The scrollbar thumb (draggable part) */
+  &::-webkit-scrollbar-thumb {
+    background: #888; /* Darker gray */
+    border-radius: 6px;
+  }
+
+  /* The scrollbar thumb on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Even darker gray on hover */
+  }
+
+  .intent-item {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      min-width: 20px;
+      max-width: 20px;
+      aspect-ratio: 1/1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+      img {
+        width: 100%;
+      }
+    }
+    .i-txt {
+      cursor: pointer;
+      flex-grow: 1;
+      font-family: "Lilita One", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .delete {
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  }
+}
+.selector-box .item:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+}
+.selector-box .item:nth-child(2) .d-item {
+  min-width: 50%;
+  .details {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .items-count {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .digit {
+        font-family: "Lilita One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 50px;
+      }
+      .label {
+        font-family: "Lilita One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 25px;
+
+      }
+    }
+  }
+}
+.selector-box .item:nth-child(2) .d-item:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .txt-1 {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    font-family: "Lilita One";
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+  }
+}
+.selector-box .item:nth-child(2) .d-item .b-icon {
+  width: 50%;
+  position: relative;
+  .big-icon {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+}
+.selector-box .item .display-part:nth-child(1) {
+  margin-bottom: 5px;
+  height: 400px;
+  width: 100%;
+  display: flex;
+}
+
+.selector-box .item .display-part:nth-child(2) {
+  margin-bottom: 5px;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgb(96, 96, 96);
+    border-radius: 10px;
+  }
+  &.toggled::-webkit-scrollbar {
+    background-color: rgb(255, 0, 0); /* Toggled color */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f4f4f4; /* Light gray background */
+    border-radius: 6px;
+  }
+
+  /* The scrollbar thumb (draggable part) */
+  &::-webkit-scrollbar-thumb {
+    background: #888; /* Darker gray */
+    border-radius: 6px;
+  }
+
+  /* The scrollbar thumb on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Even darker gray on hover */
+  }
+  .list-context{
+    width: 100%;
+    flex-grow: 1;
+    height: fit-content;
+    .q-item{
+      margin-top: 10px;
+      font-family: "Lilita One";
+      font-weight: 400;
+      font-style: normal;
+    }
+  }
+  
+}

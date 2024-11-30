@@ -1,0 +1,21 @@
+<div class="nav-main">
+  <div class="nav-items">
+    <div class="nav-item" *ngFor="let item of items">
+      <div class="icon" (click)="swtNav(item.index, item.path)">
+        <img
+          [src]="item.icon"
+          alt="icon"
+          [class]="item.index == 1 || item.index == 2 ? 'img' : ''"
+        />
+      </div>
+      <div class="active">
+        <img
+          src="icon/nav/active.png"
+          alt="icon"
+          [class]="item.index == 1 || item.index == 2 ? 'img' : ''"
+          *ngIf="activeIndex == item.index"
+        />
+      </div>
+    </div>
+  </div>
+</div>

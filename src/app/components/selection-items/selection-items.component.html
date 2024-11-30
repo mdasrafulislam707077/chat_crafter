@@ -1,0 +1,61 @@
+<div class="selector-box">
+  <div class="item">
+    <h3>Create-item</h3>
+    <div class="input-container">
+      <input
+        type="text"
+        class="txt-input"
+        placeholder="name"
+        [(ngModel)]="itemName"
+      />
+      <div class="button" role="button" (click)="createIntent()">Create</div>
+    </div>
+    <br />
+    <h3>Items</h3>
+    <div class="intent-list">
+      <div class="intent-item" *ngFor="let i of items">
+        <div class="icon">
+          <img src="icon/nav/intents.png" alt="icon" />
+        </div>
+        <div class="i-txt">
+          {{ i?.info?.name }}
+        </div>
+        <div class="icon delete" (click)="deleteIntent(i?.id)">
+          <img src="icon/other/delete.png" alt="icon" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="display-part">
+      <div class="d-item">
+        <h3>Details</h3>
+        <div class="details">
+          <!-- <app-loading-s /> -->
+          <div class="items-count">
+            <div class="digit">100</div>
+            <div class="label">Intents</div>
+          </div>
+        </div>
+      </div>
+      <div class="d-item">
+        <div class="b-icon">
+          <div class="big-icon">
+            <img src="profile.png" alt="" />
+          </div>
+        </div>
+        <div class="txt-1">Profile-name</div>
+      </div>
+    </div>
+    <!-- <h3>Item-Details</h3> -->
+    <div class="display-part">
+      <h3>Item-Details</h3>
+      <div class="list-context">
+        <li class="q-item">Quantity - 1000</li>
+        <li class="q-item">Create - 10/02/22</li>
+        <li class="q-item">Time - 2:48pm</li>
+        <li class="q-item">Day - Monday</li>
+      </div>
+    </div>
+  </div>
+</div>
