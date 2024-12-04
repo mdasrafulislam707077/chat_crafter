@@ -1,0 +1,56 @@
+.main {
+  height: 300px;
+  width: 600px;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0,.5);
+  h1{
+    width: 80%;
+    text-align: center;
+  }
+  .button-box {
+    display: flex;
+    .button-item {
+      padding: 10px 30px;
+      margin-top: 40px;
+      width: 90px;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0,.5);
+      font-family: "Fugaz One", sans-serif;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:nth-child(1) {
+        margin-right: 30px;
+        background-color: rgb(255, 98, 98);
+      }
+      &:nth-child(2) {
+        margin-right: 10px;
+        background-color: rgb(40, 249, 103);
+      }
+    }
+  }
+  .cross-box{
+    width: 100%;
+    position: absolute;
+    z-index: 11;
+    height: 50px;
+    top: 0;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 15px;
+    .cross{
+        transform: rotate(45deg);
+        font-size: 30px;
+        font-weight: 900;
+        cursor: pointer;
+    }
+  }
+}

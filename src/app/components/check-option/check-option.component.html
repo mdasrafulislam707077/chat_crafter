@@ -1,0 +1,7 @@
+<div class="main" (click)="onChange()">
+  <div class="check-icon">
+    <img src="icon/other/uncheck.png" alt="check mark" *ngIf="active" />
+    <img src="icon/other/check.png" alt="check mark" *ngIf="!active" />
+  </div>
+  <div class="label">{{ label }}</div>
+</div>

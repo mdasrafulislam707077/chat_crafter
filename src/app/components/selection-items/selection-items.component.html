@@ -1,4 +1,12 @@
 <div class="selector-box">
+  <app-dialog-box *ngIf="storeId">
+    <app-qus-box
+      (onClose)="closedialog()"
+      (onNo)="closedialog()"
+      (onYes)="deleteIntent()"
+    />
+  </app-dialog-box>
+
   <div class="item">
     <h3>Create-item</h3>
     <div class="input-container">
@@ -17,23 +25,26 @@
         <div class="icon">
           <img src="icon/nav/intents.png" alt="icon" />
         </div>
-        <div class="i-txt">
+        <div class="i-txt" (click)="clickItem(i?.id)">
           {{ i?.info?.name }}
         </div>
-        <div class="icon delete" (click)="deleteIntent(i?.id)">
+        <div class="icon delete" (click)="showInfo(i?.id)">
+          <img src="icon/other/info.png" alt="icon" />
+        </div>
+        <div class="icon delete" (click)="permissionDelete(i?.id)">
           <img src="icon/other/delete.png" alt="icon" />
         </div>
       </div>
     </div>
   </div>
   <div class="item">
-    <div class="display-part">
+    <div class="display-part" *ngIf="!storeId">
       <div class="d-item">
         <h3>Details</h3>
         <div class="details">
           <!-- <app-loading-s /> -->
           <div class="items-count">
-            <div class="digit">100</div>
+            <div class="digit">{{ items.length }}</div>
             <div class="label">Intents</div>
           </div>
         </div>
@@ -50,11 +61,11 @@
     <!-- <h3>Item-Details</h3> -->
     <div class="display-part">
       <h3>Item-Details</h3>
-      <div class="list-context">
+      <div class="list-context" *ngIf="setView != null">
         <li class="q-item">Quantity - 1000</li>
-        <li class="q-item">Create - 10/02/22</li>
-        <li class="q-item">Time - 2:48pm</li>
-        <li class="q-item">Day - Monday</li>
+        <li class="q-item">Create - {{ setView?.info?.date }}</li>
+        <li class="q-item">Time - {{ setView?.info?.time }}</li>
+        <li class="q-item">Day - {{ setView?.info?.day }}</li>
       </div>
     </div>
   </div>

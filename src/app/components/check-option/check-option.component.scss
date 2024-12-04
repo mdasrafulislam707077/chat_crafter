@@ -1,0 +1,22 @@
+.main {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  margin-right: 10px;
+  margin-top: 5px;
+  .check-icon {
+    height: 15px;
+    aspect-ratio: 1/1;
+    margin-right: 5px;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .label {
+    font-family: "Spicy Rice", serif;
+    font-size: 14px;
+  }
+}

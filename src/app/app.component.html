@@ -6,7 +6,13 @@
     </div>
   </div>
   <app-navigation />
-  <div class="context-box">
+  <div class="context-box" *ngIf="botInfo && botInfo?.botname">
     <router-outlet />
+  </div>
+  <div class="banner" *ngIf="!botInfo?.botname">
+    <div class="icon">
+      <img src="logo.png" alt="" />
+    </div>
+    <h2 class="txt">Welcome To ChatCrafter</h2>
   </div>
 </main>

@@ -1,0 +1,100 @@
+<div class="main">
+  <div class="item">
+    <div class="option-box">
+      <app-check-option label="Fussy wrong generate" />
+      <app-check-option label="Wrong generate for ask" />
+      <app-check-option label="Full wrong generate" />
+      <app-check-option label="Letter case modify" />
+      <app-check-option label="Process with globle synonyms" />
+    </div>
+    <div class="input-box">
+      <div class="input">
+        <textarea
+          name=""
+          id=""
+          placeholder="text"
+          (keydown)="addIntentsObj($event)"
+          (input)="textChange($event)"
+          [value]="intents"
+        ></textarea>
+      </div>
+      <div class="option-button-box">
+        <div class="button-item" (click)="changeTab()">
+          {{ !multilineToSingleLine ? "M - S" : "M - F" }}
+        </div>
+        <br />
+        <div class="button-item" (click)="blankinput()">
+          <div class="icon">
+            <img src="icon/other/cross.png" alt="" />
+          </div>
+        </div>
+        <br />
+
+        <div class="button-item" (click)="addIntentsObj()">
+          <div class="icon">
+            <img src="icon/other/next.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="header-box">
+      <h3>List Of Intens</h3>
+      <h3>intents-count : {{listOfIntents.length}}</h3>
+    </div>
+    <div class="list-of-intent">
+      <div *ngFor="let i of listOfIntents">
+        <app-list-item [txt]="i?.txt" />
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="option-box2">
+      <div class="option-box-item">
+        <div class="counter-text">
+          <div class="count">0</div>
+          <div class="text">Total Items</div>
+        </div>
+
+        <div class="counter-text">
+          <div class="count">0</div>
+          <div class="text">Total alternative words</div>
+        </div>
+
+        <div class="counter-text">
+          <div class="count">0</div>
+          <div class="text">Filter</div>
+        </div>
+      </div>
+      <div class="option-selector">
+        <div class="reload">
+          <img src="icon/other/reload.png" alt="" />
+        </div>
+        <div class="option-selector-input">
+          <div class="txt">Select</div>
+          <div class="a-icon">
+            <img src="icon/other/arrow.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alternative-intents">
+      <h3>Alternative-Items</h3>
+      <div class="alternative-intents-items">
+        <app-list-item
+          *ngFor="let i of [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]"
+        />
+      </div>
+    </div>
+    <div class="word-d">
+      <div>
+        <h3>Main-Word</h3>
+        <div class="list-word"></div>
+      </div>
+      <div>
+        <h3>Alternative Word</h3>
+        <div class="list-word"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,10 +7,15 @@ import { ResponseComponent } from './pages/response/response.component';
 import { ScriptsComponent } from './pages/scripts/scripts.component';
 import { SynonymsComponent } from './pages/synonyms/synonyms.component';
 import { TaskComponent } from './pages/task/task.component';
+import {IntentdetailsComponent} from './pages/intents/intentdetails/intentdetails.component'
 export const routes: Routes = [
   {
     path: '',
     component: IntentsComponent,
+  },
+  {
+    path: 'intent-details/:id',
+    component: IntentdetailsComponent,
   },
   {
     path: 'response',

@@ -23,4 +23,25 @@
     width: 100%;
     position: relative;
   }
+  .banner {
+    width: 100%;
+    height: calc(100vh - 130px);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .icon{
+      position: relative;
+    }
+    .txt{
+      font-family: "Fugaz One", sans-serif;
+      font-size: 30px;
+      margin-top: 20px;
+      width: 400px;
+      text-align: center;
+    }
+  }
 }
+
+

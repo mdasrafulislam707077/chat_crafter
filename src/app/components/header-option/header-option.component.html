@@ -1,13 +1,94 @@
 <div class="head-button-options">
   <div class="button-items">
-    <div class="button-item">
+    <div class="button-item mg short-icon" *ngIf="active_bot != null"  (click)="closeToClick()" >
+      <img
+        ngSrc="icon/head/power.png"
+        alt=""
+        height="800"
+        width="800"
+        priority
+        (click)="clickProfile()"
+      />
+    </div>
+    <div class="button-item mg short-icon" *ngIf="active_bot != null">
+      <img
+        ngSrc="icon/head/traning.png"
+        alt=""
+        height="800"
+        width="800"
+        priority
+        (click)="clickProfile()"
+      />
+    </div>
+
+    <div class="button-item mg" *ngIf="active_bot != null">
+      <img
+        ngSrc="icon/head/chat_box.png"
+        alt=""
+        height="800"
+        width="800"
+        priority
+        (click)="clickProfile()"
+      />
+    </div>
+
+    <div class="button-item" *ngIf="active_bot == null">
       <img
         ngSrc="icon/head/profile.png"
         alt=""
         height="800"
         width="800"
         priority
+        (click)="clickProfile()"
       />
+      <div class="bg" *ngIf="activeProfile">
+        <div class="profile-box">
+          <div class="cross-box">
+            <div class="cross" (click)="clickProfile()">
+              <img
+                ngSrc="icon/other/cross.png"
+                alt=""
+                height="800"
+                width="800"
+                priority
+              />
+            </div>
+          </div>
+          <div class="p-icon">
+            <img
+              ngSrc="icon/head/profile.png"
+              alt=""
+              height="800"
+              width="800"
+              priority
+            />
+          </div>
+          <h1>Select You Crafter</h1>
+          <div class="input-box">
+            <div class="input-b">
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="name"
+                [(ngModel)]="bot_name"
+              />
+            </div>
+            <div class="button" (click)="create_bot()">Create</div>
+          </div>
+          <div class="list-view">
+            <div class="list-item" *ngFor="let i of list_items">
+              <div class="icon-p" (click)="clickBotProfile(i)">
+                <img src="logo.png" alt="a" />
+              </div>
+              <div class="txt" (click)="clickBotProfile(i)">{{ i.name }}</div>
+              <div class="icon-p2" (click)="deleteBot(i.name)">
+                <img src="icon/other/delete.png" alt="a" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
