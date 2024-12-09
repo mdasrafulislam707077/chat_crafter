@@ -1,7 +1,6 @@
-from sentence_similarity import combined_similarity
-
-
+import math
 import random
+from sentence_similarity import combined_similarity
 
 def wrong_sentence_generator(sentence, rate):
     """
@@ -14,59 +13,100 @@ def wrong_sentence_generator(sentence, rate):
     Returns:
         str: The modified 'wrong' sentence.
     """
-    # Tokenize the sentence into words
     words = sentence.split()
     total_words = len(words)
     
     if total_words == 0:
         return sentence  # Return unchanged if the sentence is empty
     
-    # Calculate the number of words to modify
     num_to_modify = max(1, int(total_words * rate))
-    
-    # Choose indices of words to modify
     indices_to_modify = random.sample(range(total_words), num_to_modify)
     
-    # Generate the wrong sentence
     for idx in indices_to_modify:
         modification_type = random.choice(['replace', 'remove', 'shuffle'])
         
         if modification_type == 'replace':
-            # Replace the word with a random incorrect word
             words[idx] = ''.join(random.choices("abcdefghijklmnopqrstuvwxyz", k=random.randint(3, 6)))
-        
         elif modification_type == 'remove':
-            # Remove the word
             words[idx] = ''
-        
         elif modification_type == 'shuffle' and len(words) > 1:
-            # Shuffle the word with another random word
             swap_idx = random.randint(0, total_words - 1)
             words[idx], words[swap_idx] = words[swap_idx], words[idx]
     
-    # Rebuild the sentence and remove empty strings
     wrong_sentence = ' '.join(word for word in words if word)
-    
     return wrong_sentence
+
+
+def dynamic_error_thresholds(sentence_length):
+    """
+    Calculate dynamic error thresholds based on sentence length.
+    
+    Parameters:
+        sentence_length (int): The length of the sentence.
+    
+    Returns:
+        tuple: A tuple containing (error_count_max, error_count_min).
+    """
+    base_max = 0.95  # Base max threshold
+    base_min = 0.7   # Base min threshold
+    scaling_factor = 0.05  # Controls how thresholds change with sentence length
+
+    error_count_max = base_max - (math.log(sentence_length + 1) * scaling_factor)
+    error_count_min = base_min - (math.log(sentence_length + 1) * scaling_factor)
+
+    error_count_max = max(0.7, min(0.95, error_count_max))
+    error_count_min = max(0.5, min(0.85, error_count_min))
+    
+    return error_count_max, error_count_min
+
+
+def generateListOf(original_sentence, countIntents=30):
+    """
+    Generate a list of 'wrong' sentences based on the original sentence with dynamic error thresholds.
+    
+    Parameters:
+        original_sentence (str): The input sentence to modify.
+        countIntents (int): The number of wrong sentences to generate.
+    
+    Returns:
+        list: A list of dictionaries containing wrong sentences, their similarity, and their type.
+    """
+    listOfWrong = []
+    count = 0
+    divCount = int(countIntents / 3)
+    sentence_length = len(original_sentence.split())
+
+    while True:
+        if count < divCount:
+            rate = 0.2
+            types = "A"
+        elif count < divCount * 2:
+            rate = 0.3
+            types = "B"
+        elif count < divCount * 3:
+            rate = 0.4
+            types = "C"
+        else:
+            break
+
+        error_count_max, error_count_min = dynamic_error_thresholds(sentence_length)
+        wrong_sentence = wrong_sentence_generator(original_sentence, rate)
+        sentence1 = original_sentence
+        sentence2 = wrong_sentence
+        combined_score, similarity, seq_diff = combined_similarity(sentence1, sentence2)
+
+        if int(similarity) == 1:
+            continue
+        if similarity < error_count_max and similarity > error_count_min:
+            listOfWrong.append({"wrong_sentence": wrong_sentence, "similarity": similarity, "type": types})
+            count += 1
+
+    return listOfWrong
+
 
 # Example usage
 original_sentence = "The quick brown fox jumps over the lazy dog"
-rate = 0.3  # 30% of the sentence will be modified
+generated_list = generateListOf(original_sentence, countIntents=30)
 
-wrong_sentence = wrong_sentence_generator(original_sentence, rate)
-
-
-
-
-sentence1 = original_sentence
-sentence2 = wrong_sentence
-
-# Compute combined similarity score
-combined_score, similarity, seq_diff = combined_similarity(sentence1, sentence2)
-
-print(f"Original Sentence: {original_sentence}")
-print(f"Wrong Sentence: {wrong_sentence}")
-print(f"Combined similarity score: {combined_score}")
-
-
-# def 
+for item in generated_list:
+    print(item)

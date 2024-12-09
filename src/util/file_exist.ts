@@ -5,8 +5,13 @@ function intents(name: string, types?: string) {
 }
 export const fileBasepath = {
   intents: (name: string) => intents(name),
-  response: 'src/doc/response/',
-  scripts: 'src/doc/scripts/',
+  response: (name:string)=>intents(name,'response'),
+  scripts: (name:string)=>intents(name,'scripts'),
+  condition: (name:string)=>intents(name,'condition'),
+  customActions: (name:string)=>intents(name,'custom-action'),
+  entities: (name:string)=>intents(name,'entities'),
+  task: (name:string)=>intents(name,'task'),
+  synonyms: (name:string)=>intents(name,'synonyms'),
   botConfig: 'src/routers/bot_doc/',
 };
 export async function fileExists(filePath: string): Promise<boolean> {

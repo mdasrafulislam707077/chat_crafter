@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -28,6 +28,7 @@ export class SelectionItemsComponent implements OnInit {
   setView: any = null;
   botInfo: any;
   storeId?: string | null;
+  @Input() counterlabel:string = "Intents"
   constructor(
     private intentService: IntentsService,
     private router: Router,
@@ -52,7 +53,7 @@ export class SelectionItemsComponent implements OnInit {
   deleteIntent(): void {
     if (this.botInfo.botname) {
       this.intentService
-        .deleteIntent(this.storeId, this.botInfo.botname)
+        .deleteIntent(this.storeId, this.botInfo.botname,this.counterlabel)
         .subscribe(
           (res: any) => {
             this.items = [...res.items];
@@ -75,7 +76,7 @@ export class SelectionItemsComponent implements OnInit {
       this.botInfo = this.botInfo;
 
       if (this.botInfo) {
-        this.intentService.getIntent({ name: this.botInfo.botname }).subscribe(
+        this.intentService.getIntent({ name: this.botInfo.botname,target:this.counterlabel }).subscribe(
           (res: any) => {
             this.items = res?.items;
           },
@@ -86,7 +87,7 @@ export class SelectionItemsComponent implements OnInit {
   }
   createIntent(): void {
     this.intentService
-      .createIntent({ name: this.itemName, botname: this.botInfo.botname })
+      .createIntent({ name: this.itemName, botname: this.botInfo.botname,target:this.counterlabel })
       ?.subscribe(
         (res: any) => {
           this.items = [res?.item, ...this.items];

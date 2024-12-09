@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute,NavigationEnd  } from '@angular/router';
 @Component({
   selector: 'app-navigation',
   imports: [CommonModule],
@@ -11,6 +11,14 @@ export class NavigationComponent {
   @Output() onActive;
   constructor(private router: Router) {
     this.onActive = new EventEmitter<number>();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const findInfo:any = this.items?.find((element:any,index:any)=>{
+          return element.path == event.url.replace("/","")
+        })
+        this.activeIndex = findInfo?.index
+      }
+    });
   }
   activeIndex: number = 1;
   items = [

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-
+import { Component, Input, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-list-item',
   imports: [],
@@ -8,4 +8,11 @@ import { Component, Input } from '@angular/core';
 })
 export class ListItemComponent {
   @Input() txt: string = '';
+  @Output() onDelete: EventEmitter<any>;
+  constructor() {
+    this.onDelete = new EventEmitter<any>();
+  }
+  deleteItem(): void {
+    this.onDelete.emit();
+  }
 }

@@ -1,4 +1,17 @@
 <div class="main">
+  <app-dialog-box *ngIf="storeName">
+    <app-qus-box
+      (onYes)="deleteIntent()"
+      (onNo)="clearStoreName()"
+      (onClose)="clearStoreName()"
+    >
+    </app-qus-box>
+  </app-dialog-box>
+  <app-dialog-box *ngIf="listinfo">
+    
+    <app-text-word-selector (onClose)="clickItemClose()" [list_of_alter_items]="this.alter_words"  [text]="listinfo.txt" ></app-text-word-selector>
+  </app-dialog-box>
+
   <div class="item">
     <div class="option-box">
       <app-check-option label="Fussy wrong generate" />
@@ -40,11 +53,16 @@
     <br />
     <div class="header-box">
       <h3>List Of Intens</h3>
-      <h3>intents-count : {{listOfIntents.length}}</h3>
+      <h3>intents-count : {{ listOfIntents.length }}</h3>
     </div>
     <div class="list-of-intent">
       <div *ngFor="let i of listOfIntents">
-        <app-list-item [txt]="i?.txt" />
+        <app-list-item
+          [txt]="i?.txt"
+          (onDelete)="deleteListItem(i)"
+          (onDelete)="storeeName(i.txt)"
+          (click)="clickItem(i)"
+        />
       </div>
     </div>
   </div>

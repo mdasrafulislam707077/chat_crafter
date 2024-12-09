@@ -1,0 +1,99 @@
+<div class="main">
+  <div class="cross-box">
+    <h2>Text-Context</h2>
+    <div class="cross" (click)="close()">+</div>
+  </div>
+  <br />
+  <div class="text-box">
+    <div class="selector" *ngIf="wordSelector">
+      <div class="item">
+        <div class="head">
+          <h3>
+            Word Select
+            <span *ngIf="select_actarnative_word">
+              ({{ select_actarnative_word.word }})
+            </span>
+          </h3>
+          <!-- <div class="cross">+</div> -->
+        </div>
+        <div class="add-box">
+          <input
+            type="text"
+            name=""
+            id=""
+            [value]="labelWord"
+            (input)="labelWordInput($event)"
+          />
+          <div class="button" (click)="addlabelWord()">Add</div>
+        </div>
+        <div class="items">
+          <div class="item" *ngFor="let i of list_of_alter_items">
+            <div class="icon" (click)="selectedWordItem(i)">
+              <img src="icon/other/word.png" alt="icon" />
+            </div>
+            <div class="txt" (click)="selectedWordItem(i)">{{ i.word }}</div>
+            <div class="icon"><img src="icon/other/add.png" alt="icon" /></div>
+            <div class="icon"><img src="icon/other/all.png" alt="icon" /></div>
+            <div class="icon" (click)="deleteWord(i)">
+              <img src="icon/other/delete.png" alt="icon" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="head">
+          <h3>Create New Items</h3>
+          <div class="cross" (click)="clearSelector()">+</div>
+        </div>
+        <div class="add-box">
+          <input
+            type="text"
+            name=""
+            id=""
+            [value]="alternativeOfSelectWord"
+            (input)="onChangeAlterNativeinput($event)"
+          />
+          <div
+            class="button"
+            *ngIf="select_actarnative_word"
+            (click)="addAlterWord()"
+          >
+            Add
+          </div>
+        </div>
+        <div class="items" *ngIf="select_actarnative_word">
+          <div class="item" *ngFor="let i of select_actarnative_word?.alter">
+            <div class="icon alter">
+              <img src="icon/other/alter.png" alt="icon" />
+            </div>
+            <div class="txt">{{ i.alter_word }}</div>
+            <div
+              class="icon alter-delete"
+              (click)="deleteAlternativeWordItem(i)"
+            >
+              <img src="icon/other/delete.png" alt="icon" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <samp
+      class="par-word"
+      *ngFor="let word of list_of_words"
+      (dblclick)="ondoubleClick(word)"
+    >
+      {{ word.word }}
+    </samp>
+  </div>
+  <div class="word-map">
+    <h3>Word-Mapped</h3>
+    <div class="word-bloc">
+      <div class="item" *ngFor="let i of [1, 1, 1, 1]">
+        <div class="circle"></div>
+        <div>asdasdsad &#x21DB;</div>
+        <div class="delete"><img src="icon/other/delete.png" alt="" /></div>
+      </div>
+    </div>
+  </div>
+</div>
